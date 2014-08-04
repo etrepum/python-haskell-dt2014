@@ -2,11 +2,11 @@
 
 <h3>
     Bob Ippolito (<a href="https://twitter.com/etrepum">@etrepum</a>)<br>
-    EuroPython Berlin<br>
-    21 July 2014
+    Dropbox SF<br>
+    August 5 2014
 </h3>
 <h4>
-[bob.ippoli.to/python-haskell-ep2014]
+[bob.ippoli.to/python-haskell-dt2014]
 </h4>
 
 # Who am I?
@@ -110,7 +110,7 @@ Your code has been rated at 10.00/10
 
 # Do better tools exist?
 
-* Nothing I could find could catch this simple case
+* Nothing I could find could catch this simple case (edit: see [Jedi] & [PyCharm])
 * Most tools are concerned with the general case of Python, which
   makes it very difficult to do anything useful
 * Python 3 already has syntax for function annotations,
@@ -482,17 +482,17 @@ class Add(AST):
 # Thanks!
 
 +-------------+-------------------------------------------------+
-| **Slides**  | [bob.ippoli.to/python-haskell-ep2014]           |
+| **Slides**  | [bob.ippoli.to/python-haskell-dt2014]           |
 +-------------+-------------------------------------------------+
-| **Source**  | [github.com/etrepum/python-haskell-ep2014]      |
+| **Source**  | [github.com/etrepum/python-haskell-dt2014]      |
 +-------------+-------------------------------------------------+
 | **Email**   | bob@redivi.com                                  |
 +-------------+-------------------------------------------------+
 | **Twitter** | [&#64;etrepum](https://twitter.com/etrepum)     |
 +-------------+-------------------------------------------------+
 
-[github.com/etrepum/python-haskell-ep2014]: https://github.com/etrepum/python-haskell-ep2014/
-[bob.ippoli.to/python-haskell-ep2014]: http://bob.ippoli.to/python-haskell-ep2014/
+[github.com/etrepum/python-haskell-ep2014]: https://github.com/etrepum/python-haskell-dt2014/
+[bob.ippoli.to/python-haskell-ep2014]: http://bob.ippoli.to/python-haskell-dt2014/
 [PyPy]: http://pypy.org/
 [Numba]: http://numba.pydata.org/
 [mypy]: http://mypy-lang.org/
@@ -504,3 +504,5 @@ class Add(AST):
 [Haskell]: http://www.haskell.org/
 [Blub Paradox]: http://www.paulgraham.com/avg.html
 [PyParallel]: https://speakerdeck.com/trent/parallelism-and-concurrency-with-python
+[Jedi]: http://jedi.jedidjah.ch/en/latest/
+[PyCharm]: http://www.jetbrains.com/pycharm/

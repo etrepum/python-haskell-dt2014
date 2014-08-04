@@ -1,4 +1,4 @@
-# Install pandoc globally or run "cabal sandbox init; cabal install pandoc"
+# Install pandoc globally or run "cabal sandbox init; cabal install pandoc hobbes"
 PANDOC ?= $(shell which ./.cabal-sandbox/bin/pandoc 2>/dev/null || echo pandoc)
 HOBBES ?= $(shell which ./.cabal-sandbox/bin/hobbes 2>/dev/null || echo hobbes)
 
