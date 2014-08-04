@@ -44,10 +44,10 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h1>What Python can learn from Haskell</h1>
 <h3>
     
-Bob Ippolito (<a href="https://twitter.com/etrepum"><span class="citation" data-cites="etrepum">@etrepum</span></a>)<br> EuroPython Berlin<br> 21 July 2014
+Bob Ippolito (<a href="https://twitter.com/etrepum"><span class="citation" data-cites="etrepum">@etrepum</span></a>)<br> Dropbox SF<br> August 5 2014
 </h3>
 <h4>
-<a href="http://bob.ippoli.to/python-haskell-ep2014/">bob.ippoli.to/python-haskell-ep2014</a>
+<a href="http://bob.ippoli.to/python-haskell-dt2014/">bob.ippoli.to/python-haskell-dt2014</a>
 </h4>
 
 </section>
@@ -156,7 +156,7 @@ $ <span class="kw">echo</span> <span class="ot">$?</span>
 <section id="do-better-tools-exist" class="slide level1">
 <h1>Do better tools exist?</h1>
 <ul>
-<li>Nothing I could find could catch this simple case</li>
+<li>Nothing I could find could catch this simple case (edit: see <a href="http://jedi.jedidjah.ch/en/latest/">Jedi</a> &amp; <a href="http://www.jetbrains.com/pycharm/">PyCharm</a>)</li>
 <li>Most tools are concerned with the general case of Python, which makes it very difficult to do anything useful</li>
 <li>Python 3 already has syntax for function annotations, and we've had decent AST tools for years</li>
 <li>Will talk about one promising option in a bit</li>
@@ -248,7 +248,7 @@ main <span class="fu">=</span> print (<span class="dv">1</span> <span class="fu"
     visited = []
     queue = [starting_node]
     <span class="kw">while</span> queue:
-        node = queue[<span class="dv">0</span>]; <span class="kw">del</span> queue[:<span class="dv">1</span>] <span class="co"># queue.pop(0)</span>
+        node = queue.pop(<span class="dv">0</span>)
         <span class="kw">if</span> node not in visited:
             <span class="kw">yield</span> node
             visited.append(node)
@@ -267,7 +267,7 @@ main <span class="fu">=</span> print (<span class="dv">1</span> <span class="fu"
     visited = List[<span class="dt">int</span>]()
     queue = [starting_node]
     <span class="kw">while</span> queue:
-        node = queue[<span class="dv">0</span>]; <span class="kw">del</span> queue[:<span class="dv">1</span>] <span class="co"># queue.pop(0)</span>
+        node = queue.pop(<span class="dv">0</span>)
         <span class="kw">if</span> node not in visited:
             <span class="kw">yield</span> node
             visited.append(node)
@@ -286,7 +286,7 @@ main <span class="fu">=</span> print (<span class="dv">1</span> <span class="fu"
     visited = Set[<span class="dt">int</span>]()
     queue = deque([starting_node])
     <span class="kw">while</span> queue:
-        node = queue[<span class="dv">0</span>]; <span class="kw">del</span> queue[:<span class="dv">1</span>] <span class="co"># queue.pop(0)</span>
+        node = queue.pop(<span class="dv">0</span>)
         <span class="kw">if</span> node not in visited:
             <span class="kw">yield</span> node
             visited.append(node)
@@ -296,7 +296,7 @@ main <span class="fu">=</span> print (<span class="dv">1</span> <span class="fu"
 <h1></h1>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">breadth_first2.py</span>: In function <span class="st">&quot;breadth_first&quot;</span>:
 <span class="kw">breadth_first2.py</span>, line 11:
-  <span class="kw">deque</span>[int] has no attribute <span class="st">&quot;__delitem__&quot;</span>
+  <span class="kw">Too</span> many arguments for <span class="st">&quot;pop&quot;</span> of <span class="st">&quot;deque&quot;</span>
 <span class="kw">breadth_first2.py</span>, line 14:
   <span class="kw">Set</span>[int] has no attribute <span class="st">&quot;append&quot;</span></code></pre>
 </section>
@@ -510,11 +510,11 @@ eval node <span class="fu">=</span> <span class="kw">case</span> node <span clas
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><p><strong>Slides</strong></p></td>
-<td style="text-align: left;"><p><a href="http://bob.ippoli.to/python-haskell-ep2014/">bob.ippoli.to/python-haskell-ep2014</a></p></td>
+<td style="text-align: left;"><p><a href="http://bob.ippoli.to/python-haskell-dt2014/">bob.ippoli.to/python-haskell-dt2014</a></p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p><strong>Source</strong></p></td>
-<td style="text-align: left;"><p><a href="https://github.com/etrepum/python-haskell-ep2014/">github.com/etrepum/python-haskell-ep2014</a></p></td>
+<td style="text-align: left;"><p><a href="https://github.com/etrepum/python-haskell-dt2014/">github.com/etrepum/python-haskell-dt2014</a></p></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p><strong>Email</strong></p></td>

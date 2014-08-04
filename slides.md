@@ -218,7 +218,7 @@ def breadth_first(starting_node,
     visited = []
     queue = [starting_node]
     while queue:
-        node = queue[0]; del queue[:1] # queue.pop(0)
+        node = queue.pop(0)
         if node not in visited:
             yield node
             visited.append(node)
@@ -239,7 +239,7 @@ def breadth_first(starting_node: int,
     visited = List[int]()
     queue = [starting_node]
     while queue:
-        node = queue[0]; del queue[:1] # queue.pop(0)
+        node = queue.pop(0)
         if node not in visited:
             yield node
             visited.append(node)
@@ -260,7 +260,7 @@ def breadth_first(starting_node: int,
     visited = Set[int]()
     queue = deque([starting_node])
     while queue:
-        node = queue[0]; del queue[:1] # queue.pop(0)
+        node = queue.pop(0)
         if node not in visited:
             yield node
             visited.append(node)
@@ -272,7 +272,7 @@ def breadth_first(starting_node: int,
 ```bash
 breadth_first2.py: In function "breadth_first":
 breadth_first2.py, line 11:
-  deque[int] has no attribute "__delitem__"
+  Too many arguments for "pop" of "deque"
 breadth_first2.py, line 14:
   Set[int] has no attribute "append"
 ```
@@ -491,8 +491,8 @@ class Add(AST):
 | **Twitter** | [&#64;etrepum](https://twitter.com/etrepum)     |
 +-------------+-------------------------------------------------+
 
-[github.com/etrepum/python-haskell-ep2014]: https://github.com/etrepum/python-haskell-dt2014/
-[bob.ippoli.to/python-haskell-ep2014]: http://bob.ippoli.to/python-haskell-dt2014/
+[github.com/etrepum/python-haskell-dt2014]: https://github.com/etrepum/python-haskell-dt2014/
+[bob.ippoli.to/python-haskell-dt2014]: http://bob.ippoli.to/python-haskell-dt2014/
 [PyPy]: http://pypy.org/
 [Numba]: http://numba.pydata.org/
 [mypy]: http://mypy-lang.org/

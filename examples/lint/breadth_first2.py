@@ -8,7 +8,7 @@ def breadth_first(starting_node: int,
     visited = Set[int]()
     queue = deque([starting_node])
     while queue:
-        node = queue[0]; del queue[:1] # queue.pop(0)
+        node = queue.pop(0)
         if node not in visited:
             yield node
             visited.append(node)
