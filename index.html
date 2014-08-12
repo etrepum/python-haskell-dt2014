@@ -61,6 +61,25 @@ Bob Ippolito (<a href="https://twitter.com/etrepum"><span class="citation" data-
 <li>Currently focusing on code education non-profit <a href="http://www.missionbit.com/">Mission Bit</a></li>
 </ul>
 </section>
+<section id="mission-bit" class="slide level1">
+<h1>Mission Bit</h1>
+<ul>
+<li>501c3 non-profit here in SF</li>
+<li>Free after-school coding classes for public school students</li>
+<li>High school and middle school</li>
+<li>Taught by volunteer tech professionals</li>
+<li>Provides opportunities: summer internships, company visits, etc.</li>
+<li>Focus is on project based learning, no tests</li>
+</ul>
+</section>
+<section id="help-mission-bit" class="slide level1">
+<h1>Help Mission Bit</h1>
+<ul>
+<li>We need volunteer mentors, like you all! Sign up at <strong><a href="http://www.missionbit.com/">missionbit.com</a></strong></li>
+<li>We need donations of Mac laptops (as well as money and corporate sponsors, of course)</li>
+<li>Happy to answer questions after the talk, or ping me any time</li>
+</ul>
+</section>
 <section id="python-is-not-all-bad" class="slide level1">
 <h1>Python is not all bad!</h1>
 <ul>
@@ -156,10 +175,10 @@ $ <span class="kw">echo</span> <span class="ot">$?</span>
 <section id="do-better-tools-exist" class="slide level1">
 <h1>Do better tools exist?</h1>
 <ul>
-<li>Nothing I could find could catch this simple case (edit: see <a href="http://jedi.jedidjah.ch/en/latest/">Jedi</a> &amp; <a href="http://www.jetbrains.com/pycharm/">PyCharm</a>)</li>
+<li>Supposedly <a href="http://jedi.jedidjah.ch/en/latest/">Jedi</a> &amp; <a href="http://www.jetbrains.com/pycharm/">PyCharm</a> can catch this</li>
 <li>Most tools are concerned with the general case of Python, which makes it very difficult to do anything useful</li>
 <li>Python 3 already has syntax for function annotations, and we've had decent AST tools for years</li>
-<li>Will talk about one promising option in a bit</li>
+<li>Another option exists, will come back to that shortly :)</li>
 </ul>
 </section>
 <section id="erlang-nonsense" class="slide level1">
@@ -224,6 +243,56 @@ main <span class="fu">=</span> print (<span class="dv">1</span> <span class="fu"
 <li>Operations such as <code>+</code>, <code>-</code>, <code>*</code>, <code>negate</code> belong to the Num typeclass (handwavingly similar to a Python ABC)</li>
 <li>Only truly numeric types such as Int, Double, Integer, Rational have built-in instances for the Num typeclass</li>
 <li>You could (<em>but absolutely should not!</em>) implement such an instance to make this code compile. Don't do that. Seriously.</li>
+</ul>
+</section>
+<section id="does-mypy-catch-this" class="slide level1">
+<h1>Does mypy catch this?</h1>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mypy</span> -S nonsense.py
+$ <span class="kw">echo</span> <span class="ot">$?</span>
+<span class="kw">0</span></code></pre>
+<p><em>Not as-is</em></p>
+</section>
+<section id="before-annotation" class="slide level1">
+<h1>Before annotation</h1>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="co">&quot;&quot;&quot;This module is nonsense!&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> main():
+    <span class="co">&quot;&quot;&quot;What is this, JavaScript?&quot;&quot;&quot;</span>
+    <span class="dt">print</span>(<span class="dv">1</span> + <span class="st">&quot;1&quot;</span>)
+
+<span class="kw">if</span> <span class="ot">__name__</span> == <span class="st">&#39;__main__&#39;</span>:
+    main()</code></pre>
+</section>
+<section id="after-annotation" class="slide level1">
+<h1>After annotation</h1>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="co">&quot;&quot;&quot;This module is nonsense!&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> main() -&gt; <span class="ot">None</span>:
+    <span class="co">&quot;&quot;&quot;What is this, JavaScript?&quot;&quot;&quot;</span>
+    <span class="dt">print</span>(<span class="dv">1</span> + <span class="st">&quot;1&quot;</span>)
+
+<span class="kw">if</span> <span class="ot">__name__</span> == <span class="st">&#39;__main__&#39;</span>:
+    main()</code></pre>
+</section>
+<section id="lets-try-mypy-again" class="slide level1">
+<h1>Let's try mypy again</h1>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mypy</span> -S nonsense1.py
+<span class="kw">nonsense1.py</span>: In function <span class="st">&quot;main&quot;</span>:
+<span class="kw">nonsense1.py</span>, line 5:
+  <span class="kw">Unsupported</span> operand types for + (<span class="st">&quot;int&quot;</span> and <span class="st">&quot;str&quot;</span>)</code></pre>
+</section>
+<section id="mypy-img" class="slide level1">
+<h1></h1>
+<p><img src="img/mypy.jpg" class="full"></p>
+</section>
+<section id="whats-mypy" class="slide level1">
+<h1>What's mypy?</h1>
+<ul>
+<li><a href="http://mypy-lang.org/">mypy</a> is an experimental Python variant</li>
+<li>Python-compatible syntax and semantics</li>
+<li>Compile-time static type checking with inference, but needs assistance from annotations</li>
+<li><em>Optional</em> static typing, with <em>inference</em></li>
+<li>(I promise, it's not like Java!)</li>
 </ul>
 </section>
 <section id="why-is-refactoring-hard" class="slide level1">
@@ -324,7 +393,6 @@ main <span class="fu">=</span> print (<span class="dv">1</span> <span class="fu"
 <ul>
 <li><a href="http://mypy-lang.org/">mypy</a> is the most sensible approach I've seen so far</li>
 <li>The author needs some help! There are many tasks to do that do not require deep knowledge of mypy or type systems</li>
-<li>mypy does not yet catch the <code>1 + &quot;1&quot;</code> error yet, but can catch many other mistakes such as the refactoring example</li>
 <li>Why not X (<a href="http://pypy.org/">PyPy</a>, <a href="http://nuitka.net/">Nuitka</a>, …): these projects do nothing to assist with correctness and code quality!</li>
 </ul>
 </section>

@@ -20,6 +20,24 @@
 - Currently focusing on code education non-profit
   [Mission Bit](http://www.missionbit.com/)
 
+# Mission Bit
+
+* 501c3 non-profit here in SF
+* Free after-school coding classes for public school students
+* High school and middle school
+* Taught by volunteer tech professionals
+* Provides opportunities: summer internships, company visits, etc.
+* Focus is on project based learning, no tests
+
+# Help Mission Bit
+
+* We need volunteer mentors, like you all! Sign up at **[missionbit.com]**
+* We need donations of Mac laptops
+  (as well as money and corporate sponsors, of course)
+* Happy to answer questions after the talk, or ping me any time
+
+[missionbit.com]: http://www.missionbit.com/
+
 # Python is not all bad!
 
 - I love Python's community
@@ -110,12 +128,12 @@ Your code has been rated at 10.00/10
 
 # Do better tools exist?
 
-* Nothing I could find could catch this simple case (edit: see [Jedi] & [PyCharm])
+* Supposedly [Jedi] & [PyCharm] can catch this
 * Most tools are concerned with the general case of Python, which
   makes it very difficult to do anything useful
 * Python 3 already has syntax for function annotations,
   and we've had decent AST tools for years
-* Will talk about one promising option in a bit
+* Another option exists, will come back to that shortly :)
 
 # Erlang nonsense
 
@@ -195,6 +213,65 @@ No instance for (Num [Char]) arising from a use of '+'
   built-in instances for the Num typeclass
 * You could (*but absolutely should not!*) implement such an instance
   to make this code compile. Don't do that. Seriously.
+
+
+# Does mypy catch this?
+
+```bash
+$ mypy -S nonsense.py
+$ echo $?
+0
+```
+
+*Not as-is*
+
+# Before annotation
+
+```python
+"""This module is nonsense!"""
+
+def main():
+    """What is this, JavaScript?"""
+    print(1 + "1")
+
+if __name__ == '__main__':
+    main()
+```
+
+# After annotation
+
+```python
+"""This module is nonsense!"""
+
+def main() -> None:
+    """What is this, JavaScript?"""
+    print(1 + "1")
+
+if __name__ == '__main__':
+    main()
+```
+
+# Let's try mypy again
+
+```bash
+$ mypy -S nonsense1.py
+nonsense1.py: In function "main":
+nonsense1.py, line 5:
+  Unsupported operand types for + ("int" and "str")
+```
+
+# {#mypy-img}
+
+<img src="img/mypy.jpg" class="full">
+
+# What's mypy?
+
+* [mypy] is an experimental Python variant
+* Python-compatible syntax and semantics
+* Compile-time static type checking with inference, but needs
+  assistance from annotations
+* *Optional* static typing, with *inference*
+* (I promise, it's not like Java!)
 
 # Why is refactoring hard?
 
@@ -303,8 +380,6 @@ def breadth_first(starting_node: int,
 * [mypy] is the most sensible approach I've seen so far
 * The author needs some help! There are many tasks to do that do not
   require deep knowledge of mypy or type systems
-* mypy does not yet catch the `1 + "1"` error yet, but can catch many
-  other mistakes such as the refactoring example
 * Why not X ([PyPy], [Nuitka], …): these projects do nothing to assist
   with correctness and code quality!
 
